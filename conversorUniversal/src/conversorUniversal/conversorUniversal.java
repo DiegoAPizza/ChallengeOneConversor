@@ -2,13 +2,21 @@ package conversorUniversal;
 
 import javax.swing.*;
 import java.text.DecimalFormat;
-
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 
 public class conversorUniversal {
 
     public static void main(String[] args) throws Exception {
-
-        Object[] opciones = { "Convertidor de Divisas", "Convertidor de Temperatura",
+    	
+    	UIManager.put("OptionPane.background", Color.LIGHT_GRAY);
+    	
+    	 UIManager.put("Button.background", Color.LIGHT_GRAY);
+    	 
+    	 UIManager.put("OptionPane.messageFont", new Font("Arial", Font.BOLD, 16));
+    	
+    	Object[] opciones = { "Convertidor de Divisas", "Convertidor de Temperatura",
                 "Convertidor de Tiempo(Seg, Min, Hs, Dias)", "Convertidor de Longitudes", "Salir" };
         String opcionSeleccionada = (String) JOptionPane.showInputDialog(
                 null,
@@ -18,6 +26,8 @@ public class conversorUniversal {
                 null,
                 opciones,
                 opciones[0]);
+        JOptionPane.showMessageDialog(null, "Has seleccionado Convertidor de Divisas.", "Convertidor de Divisas",
+                JOptionPane.INFORMATION_MESSAGE, null);
         int posicion = 0;
         for (int i = 0; i < opciones.length; i++) {
             if (opciones[i].equals(opcionSeleccionada)) {
@@ -25,10 +35,16 @@ public class conversorUniversal {
                 break;
             }
         }
+        
         boolean continuar = true;
         DecimalFormat formatDiv = new DecimalFormat("#.##");
-        do {
-
+       
+        if(opcionSeleccionada==null) {
+         	 JOptionPane.showMessageDialog(null, "¡Hasta luego!");
+         	continuar = false;
+          }
+        do{
+        	
             // Procesar la elección del usuario
             switch (posicion) {
                 case 0:
