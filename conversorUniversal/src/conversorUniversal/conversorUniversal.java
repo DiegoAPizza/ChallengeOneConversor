@@ -87,7 +87,7 @@ public class conversorUniversal {
             }
             else {
             	String cantidad_De_Monedas = JOptionPane.showInputDialog(null,
-                        "Ingrese Cantidad que desee cambiar de Pesos Arg a "+ divisa_a_Cambiar);
+                        "Ingrese Cantidad que desee cambiar "+ divisa_a_Cambiar);
                 double moneda = 0.00;
                 if (cantidad_De_Monedas == null) {
                     // Si el usuario hace clic en "Cancelar" o cierra el cuadro de diálogo, muestra un mensaje y repite el bucle.
@@ -102,36 +102,49 @@ public class conversorUniversal {
                 }
                 if (divisa_a_Cambiar.equals("ARG a USD")) {
                     double dolar = moneda / 550;
-                    JOptionPane.showMessageDialog(null, moneda + "ARG a USD son: " + formatDiv.format(dolar) + " Dolares"); 
+                    JOptionPane.showMessageDialog(null, moneda + "ARG a USD son: " + formatDiv.format(dolar) + " $Dolares"); 
                 }
 
                 else if (divisa_a_Cambiar.equals("ARG a EUR")) {
                     double euro = moneda / 600;
-                    JOptionPane.showMessageDialog(null, moneda + "ARG a EUR son: " + formatDiv.format(euro) + " Euros");
+                    JOptionPane.showMessageDialog(null, moneda + "ARG a EUR son: " + formatDiv.format(euro) + " €Euros");
                 }
 
                 else if (divisa_a_Cambiar.equals("ARG a JPY")) {
                     double yen = moneda / 1.92;
-                    JOptionPane.showMessageDialog(null, moneda + "ARG a JPY son: " + formatDiv.format(yen) + " Yen");
+                    JOptionPane.showMessageDialog(null, moneda + "ARG a JPY son: " + formatDiv.format(yen) + " ¥Yenes");
                 }
 
                 else if (divisa_a_Cambiar.equals("ARG a GBP")) {
                     double libra = moneda / 349.69;
                     JOptionPane.showMessageDialog(null,
-                            moneda + "ARG a GBP son: " + formatDiv.format(libra) + " Libra Estarlina");
+                            moneda + "ARG a GBP son: " + formatDiv.format(libra) + " £Libra Estarlina");
                 }
 
                 else if (divisa_a_Cambiar.equals("ARG a KRW")) {
                     double won = moneda / 0.21;
-                    JOptionPane.showMessageDialog(null, moneda + "ARG a KRW son: " + formatDiv.format(won) + " Won");
+                    JOptionPane.showMessageDialog(null, moneda + "ARG a KRW son: " + formatDiv.format(won) + " ₩Wones");
                 }
                 else if (divisa_a_Cambiar.equals("KRW a ARG")) {
-                    double won = moneda / 0.21;
-                    JOptionPane.showMessageDialog(null, moneda + "ARG a KRW son: " + formatDiv.format(won) + " Won");
+                    double won = moneda * 0.21;
+                    JOptionPane.showMessageDialog(null, moneda + "KRW a ARG son: " + formatDiv.format(won) + " $ARG");
                 }
-                
-                
-                
+                else if (divisa_a_Cambiar.equals("GBP a ARG")) {
+                    double libra = moneda * 349.69;
+                    JOptionPane.showMessageDialog(null, moneda + "GBP a ARG son: " + formatDiv.format(libra) + " $ARG");
+                }
+                else if (divisa_a_Cambiar.equals("JPY a ARG")) {
+                    double yen = moneda * 1.92;
+                    JOptionPane.showMessageDialog(null, moneda + "JPY a ARG son: " + formatDiv.format(yen) + " $ARG");
+                }
+                else if (divisa_a_Cambiar.equals("EUR a ARG")) {
+                    double euro = moneda * 600;
+                    JOptionPane.showMessageDialog(null, moneda + "EUR a ARG son: " + formatDiv.format(euro) + " $ARG");
+                }
+                else if (divisa_a_Cambiar.equals("ARG a USD")) {
+                    double dolar = moneda * 550;
+                    JOptionPane.showMessageDialog(null, moneda + "USD a ARG son: " + formatDiv.format(dolar) + " $ARG"); 
+                }
                 
                 return true;
             }
