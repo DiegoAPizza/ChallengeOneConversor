@@ -2,7 +2,7 @@ package conversorUniversal;
 
 import javax.swing.*;
 import java.text.DecimalFormat;
-import java.util.Iterator;
+
 
 public class conversorUniversal {
 
@@ -75,9 +75,11 @@ public class conversorUniversal {
                 "Conversor de Tiempo(Seg, Mins, Hs, Dias)", JOptionPane.QUESTION_MESSAGE, null, tiempoDisponible,
                 tiempoDisponible[0]);;
 		if(tiempo_a_Cambiar==null) {
+			JOptionPane.showMessageDialog(null, "¡Hasta luego!");
         	return false;
         }
 		if(tiempo_a_Cambiar.equals("Salir")) {
+			JOptionPane.showMessageDialog(null, "¡Hasta luego!");
         	return false;
         }
 		else {
@@ -127,51 +129,52 @@ public class conversorUniversal {
 	}
 
 	public static boolean convertidor_de_Temperaturas(DecimalFormat formatDiv) {
-    	String[] temperaturasDisponibles= {"Celcius(c°) a Fahrenheit (°F)","Celcius(c°) a Kelvin(K)","Kelvin(K) a Celcius(c°)","Fahrenheit (°F) a Celcius(c°)","Salir"};
-    	Object temperatura_a_Cambiar=(String) JOptionPane.showInputDialog(null, "Seleccione  una Opcion",
-                "Conversor de Temperatura", JOptionPane.QUESTION_MESSAGE, null, temperaturasDisponibles,
-                temperaturasDisponibles[0]);;
-		if(temperatura_a_Cambiar==null) {
-        	return false;
-        }
-		if(temperatura_a_Cambiar.equals("Salir")) {
-        	return false;
-        }
-		else {
-			String temperatura = JOptionPane.showInputDialog(null,
-                    "Ingrese Cantidad que desee cambiar "+ temperatura_a_Cambiar);
-            double celsius = 0.00;
-            if (temperatura == null) {
-                // Si el usuario hace clic en "Cancelar" o cierra el cuadro de diálogo, muestra un mensaje y repite el bucle.
-                JOptionPane.showMessageDialog(null, "Operación cancelada. Por favor, ingrese una cantidad válida.");
-                return true;
-            }
-            try {
-            	celsius = Double.parseDouble(temperatura);
-            } catch (NumberFormatException error) {
-                JOptionPane.showMessageDialog(null, "Valor No valido para esta Operacion");
-            }
-            if (temperatura.equals("Celcius(c°) a Fahrenheit (°F)")) {
-                double fahrenheit = (celsius * 9/5) + 32;
-                JOptionPane.showMessageDialog(null, celsius + "Celcius(c°) a Fahrenheit (°F) son: " + formatDiv.format(fahrenheit) + " °F"); 
-            }
-            else if(temperatura.equals("Celcius(c°) a Kelvin(K)")) {
-            	double kelvin=celsius+273.15;
-            	JOptionPane.showMessageDialog(null, celsius + "Celcius(c°) a a Kelvin(K) son: " + formatDiv.format(kelvin) + " K");
-            }
-            
-            else if(temperatura.equals("Fahrenheit (°F) a Celcius(c°)")) {
-            	double fahrenheit = (celsius / (9/5)) - 32;
-            	JOptionPane.showMessageDialog(null, celsius + "Fahrenheit(°F) a Celcius(c°) son: " + formatDiv.format(fahrenheit) + " °c");
-            }
-            
-            else if(temperatura.equals("Kelvin(K) a Celcius(c°)")) {
-            	double kelvin=celsius-273.15;
-            	JOptionPane.showMessageDialog(null, celsius + "Kelvin(K) a Celcius(c°) son: " + formatDiv.format(kelvin) + " °c");
-            }
-            
-			return true;
-		}
+    	String[] temperaturasDisponibles= {"Celcius a Fahrenheit","Celcius a Kelvin","Kelvin a Celcius","Fahrenheit a Celcius","Salir"};
+    	String temperatura_a_Cambiar = (String) JOptionPane.showInputDialog(
+    	        null,
+    	        "¿Qué tipo de conversión de temperatura desea realizar?",
+    	        "Conversor de Temperatura",
+    	        JOptionPane.PLAIN_MESSAGE,
+    	        null,
+    	        temperaturasDisponibles,
+    	        temperaturasDisponibles[0]);
+
+    	if (temperatura_a_Cambiar == null) {
+    	    // Si el usuario hace clic en "Cancelar" o cierra el cuadro de diálogo, muestra un mensaje y termina la función.
+    		JOptionPane.showMessageDialog(null, "¡Hasta luego!");
+    	    return false;
+    	}
+    	if(temperatura_a_Cambiar.equals("Salir")) {
+    		JOptionPane.showMessageDialog(null, "¡Hasta luego!");
+    		return false;
+    	}
+
+    	String temperatura = JOptionPane.showInputDialog(null,
+    	        "Ingrese la cantidad de grados Celsius que desea convertir a " + temperatura_a_Cambiar);
+    	double celsius = 0.00;
+    	try {
+    	    celsius = Double.parseDouble(temperatura);
+    	} catch (NumberFormatException error) {
+    	    JOptionPane.showMessageDialog(null, "Valor no válido para esta Operación. Por favor, ingrese una cantidad numérica.");
+    	    return true;
+    	}
+
+    	if (temperatura_a_Cambiar.equalsIgnoreCase("Celcius a Fahrenheit")) {
+    	    double fahrenheit = (celsius * 9 / 5) + 32;
+    	    JOptionPane.showMessageDialog(null, celsius + " grados Celsius (°C) a Fahrenheit (°F) son: " + formatDiv.format(fahrenheit) + " °F");
+    	} else if (temperatura_a_Cambiar.equalsIgnoreCase("Celcius a Kelvin")) {
+    	    double kelvin = celsius + 273.15;
+    	    JOptionPane.showMessageDialog(null, celsius + " grados Celsius (°C) a Kelvin (K) son: " + formatDiv.format(kelvin) + " K");
+    	} else if (temperatura_a_Cambiar.equalsIgnoreCase("Fahrenheit a Celcius")) {
+    	    double celsiusF = (celsius - 32) * 5 / 9;
+    	    JOptionPane.showMessageDialog(null, celsius + " grados Fahrenheit (°F) a Celsius (°C) son: " + formatDiv.format(celsiusF) + " °C");
+    	} else if (temperatura_a_Cambiar.equalsIgnoreCase("Kelvin a Celcius")) {
+    	    double celsiusK = celsius - 273.15;
+    	    JOptionPane.showMessageDialog(null, celsius + " grados Kelvin (K) a Celsius (°C) son: " + formatDiv.format(celsiusK) + " °C");
+    	}
+			
+		
+		return true;
 	}
 
 	public static boolean convertidor_de_monedas( DecimalFormat formatDiv) {
@@ -182,9 +185,11 @@ public class conversorUniversal {
                     "Conversor de Divisas", JOptionPane.QUESTION_MESSAGE, null, divisasDisponibles,
                     divisasDisponibles[0]);
             if(divisa_a_Cambiar==null) {
+            	JOptionPane.showMessageDialog(null, "¡Hasta luego!");
             	return false;
             }
             if(divisa_a_Cambiar.equals("Salir")) {
+            	JOptionPane.showMessageDialog(null, "¡Hasta luego!");
             	return false;
             }
             else {
@@ -260,9 +265,11 @@ public class conversorUniversal {
                  "Conversor de Longitudes/Medidas", JOptionPane.QUESTION_MESSAGE, null, medidasDisponibles,
                  medidasDisponibles[0]);
          if(medida_a_Cambiar==null) {
+        	 JOptionPane.showMessageDialog(null, "¡Hasta luego!");
          	return false;
          }
          if(medida_a_Cambiar.equals("Salir")) {
+        	 JOptionPane.showMessageDialog(null, "¡Hasta luego!");
          	return false;
          }
          else {
